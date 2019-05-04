@@ -1,0 +1,83 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Twitter</title>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/styles.css"/>
+</head>
+
+<body>
+{% if my_user.username == None %}
+	<div class="form-title">Please <a href="/register">register</a> first to access all the features of this application</div>
+{% else %}
+<div class="header-twitter">
+	<div class="left-box">
+		<div class="menu">
+			<ul>
+				<li><a href="/" class="active"><img id="home" src="/../images/home-icon.png"/>Home</a></li>
+				<li><a href="/profile"><img id="profile" src="/../images/profile-icon.png"/>Me</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="mid-box"><div id="img"><a href="/"><img id="logo" src="/../images/twitter-logo.png"/></a></div></div>
+	<div class="right-box">
+		<div class="search-container">
+			<form action="/search" method="get">
+			<input type="text" placeholder="Search.." name="search">
+			<button type="submit"></button>
+			</form>
+		</div>
+		<div class="logout-img"><a href="{{ url }}"><img id="logout-img" src="/../images/logout.png"/></a></div>	
+		<div class="update-link"><a href="/edit">Want to update your profile?</a></div>
+	</div>
+</div>
+
+<div class="twitt-container">
+	<div class="left-twitt-container">
+		<div class="profile">
+			<div class="pic">
+			
+			{% for i in data %}
+			{% if i.user_id == my_user.key.id() %}
+				<div class="picture-box"><img id="box" src="/../images/twitt-profile.jpg"/></div>
+				<div class="name">{{ i.first_name }} {{ i.last_name }}</div>
+				<div class="username"><a href="/profile">@{{ i.username }}</a></div>
+				<div class="about">{{ i.about }}</div>
+				{% endif %}
+			{% endfor %}
+			
+			</div>
+			
+			<div class="compose"><a href="/add">Compose new Tweet...</a></div>
+		</div>
+		<div class="follow">
+			<div class="title">Who to follow</div>
+			<div id="viewall"><a href="/">View All</a></div>
+			
+		</div>
+	</div>
+	<div class="right-twitt-container">
+		<div class="title">Tweets <span id="new-tweet"><a href="/add">Add new</a></span></div>
+		{{ message }}
+		{% for i in tweets %}
+		{% if (i.user_id == my_user.key.id()) or (i.username in my_user.following) %}
+		<div class="tweet-content">
+			<div class="left"></div>
+			<div class="right">
+				<div class="title">{{ i.username }} <span style="font-size:12px;color:#c5bfbf;">@{{ i.username }}</span></div>
+				<div class="content">{{ i.content }}</div>
+				{% if i.picture_blob == None %}
+					<div></div>
+				{% else %}
+					<div class="tweet-img"><img id="image-value" src="{{ i.picture_url }}"/></div>
+				{% endif %}
+			</div>
+		</div>
+		{% endif %}
+		{% endfor %}
+	</div>
+</div>
+
+{% endif %}
+</body>
+
+</html>
