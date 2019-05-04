@@ -1,0 +1,80 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Update Info</title>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/styles.css"/>
+</head>
+
+<body>
+<div class="header-twitter">
+	<div class="left-box">
+		<div class="menu">
+			<ul>
+				<li><a href="/" class="active"><img id="home" src="/../images/home-icon.png"/>Home</a></li>
+				<li><a href="/profile"><img id="profile" src="/../images/profile-icon.png"/>Me</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="mid-box"><div id="img"><a href="/"><img id="logo" src="/../images/twitter-logo.png"/></a></div></div>
+	<div class="right-box">
+		<div class="search-container">
+			<form action="/">
+			<input type="text" placeholder="Search.." name="search">
+			<button type="submit"></button>
+			</form>
+		</div>
+		<div class="logout-img"><a href="{{ url }}"><img id="logout-img" src="/../images/logout.png"/></a></div>	
+	</div>
+</div>
+<div class="main-container">
+	<div class="title">User Information</div>
+    <table>
+        <form method="post" action="/edit">
+		{% for i in userinfo %}
+		{% if value == i.username %}
+			<tr>
+				<td>
+				Username
+				</td>
+                <td>
+                    {{ i.username }}
+                </td>
+			</tr>
+			<tr>
+				<td>
+				Name
+				</td>
+                <td>
+                    {{ i.first_name }} {{ i.last_name }}
+                </td>
+			</tr>
+			<tr>
+				<td>
+				About user
+				</td>
+                <td>
+					{{ i.about }}
+                </td>
+			</tr>
+			<tr>
+				<td>
+				Date of birth
+				</td>
+				<td>
+                    {{ i.dob }}
+                </td>
+			</tr>
+			<tr>
+                <td class="button_row">
+                    <input type="submit" class="button" name="button" value="Follow">
+                </td>
+            </tr>
+			{% endif %}
+			{% endfor %}
+        </form>
+    </table>
+    
+</div>
+</body>
+
+</html>

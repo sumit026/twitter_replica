@@ -1,0 +1,97 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Update Info</title>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/styles.css"/>
+</head>
+
+<body>
+<div class="header-twitter">
+	<div class="left-box">
+		<div class="menu">
+			<ul>
+				<li><a href="/" class="active"><img id="home" src="/../images/home-icon.png"/>Home</a></li>
+				<li><a href="/profile"><img id="profile" src="/../images/profile-icon.png"/>Me</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="mid-box"><div id="img"><a href="/"><img id="logo" src="/../images/twitter-logo.png"/></a></div></div>
+	<div class="right-box">
+		<div class="search-container">
+			<form action="/">
+			<input type="text" placeholder="Search.." name="search">
+			<button type="submit"></button>
+			</form>
+		</div>
+		<div class="logout-img"><a href="{{ url }}"><img id="logout-img" src="/../images/logout.png"/></a></div>	
+	</div>
+</div>
+<div class="main-container">
+	<div class="title">Update your profile</div>
+    <table>
+        <form method="post" action="/edit">
+		{% for i in data %}
+		{% if i.user_id == my_user.key.id() %}
+			<tr>
+				<td>
+				Your username
+				</td>
+                <td>
+                    <input type="text" class="text-input" id="input-username" name="username" placeholder="Please select a username for your profile..." 
+					value="{{ i.username }}" readonly/>
+					<span class="validity"></span>
+                </td>
+			</tr>
+			<tr>
+				<td>
+				First Name
+				</td>
+                <td>
+                    <input type="text" class="text-input" name="fname" placeholder="First Name"
+					title="Please enter your first name" value="{{ i.first_name }}" required/>
+                </td>
+			</tr>
+			<tr>
+				<td>
+				Last Name
+				</td>
+                <td>
+                    <input type="text" class="text-input" name="lname" placeholder="Last Name" 
+					title="Please enter your last name" value="{{ i.last_name }}" required/>
+                </td>
+			</tr>
+            
+			<tr>
+				<td>
+				About yourself
+				</td>
+                <td>
+					<textarea class="textarea" name="about" placeholder="Tell about yourself..." maxlength="280" 
+					title="Please enter some information about yourself" required>{{ i.about }}</textarea>
+                </td>
+			</tr>
+			<tr>
+				<td>
+				Date of birth
+				</td>
+				<td>
+                    <input type="date" class="text-input" name="dob" value="{{ i.dob }}" required/>
+                </td>
+			</tr>
+			<tr>
+                <td class="button_row">
+                    <input type="submit" class="button" name="button" value="Update">
+                </td>
+				<td class="button_row">
+					<input type="submit" class="button-cancel" name="button" value="Cancel">
+                </td>
+            </tr>
+			{% endif %}
+			{% endfor %}
+        </form>
+    </table>
+    
+</div>
+</body>
+
+</html>

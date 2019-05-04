@@ -1,0 +1,77 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Add new tweet</title>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/styles.css"/>
+</head>
+
+<body>
+<div class="header-twitter">
+	<div class="left-box">
+		<div class="menu">
+			<ul>
+				<li><a href="/" class="active"><img id="home" src="/../images/home-icon.png"/>Home</a></li>
+				<li><a href="/profile"><img id="profile" src="/../images/profile-icon.png"/>Me</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="mid-box"><div id="img"><a href="/"><img id="logo" src="/../images/twitter-logo.png"/></a></div></div>
+	<div class="right-box">
+		<div class="search-container">
+			<form action="/">
+			<input type="text" placeholder="Search.." name="search">
+			<button type="submit"></button>
+			</form>
+		</div>
+		<div class="logout-img"><a href="{{ url }}"><img id="logout-img" src="/../images/logout.png"/></a></div>	
+		<div class="update-link"><a href="/edit">Want to update your profile?</a></div>
+	</div>
+</div>
+<div class="main-container">
+	<div class="title">Add new tweet</div>
+    <table>
+        <form method="post" action="{{ upload_url }}" enctype="multipart/form-data">
+			<tr>
+                <td>
+                    <input type="hidden" class="text-input" id="input-username" name="username" value="{{ my_user.username }}" readonly/>
+                </td>
+			</tr>
+			<tr>
+				<td>
+				Content
+				</td>
+                <td>
+                    <textarea class="textarea" name="content" placeholder="Add something here..." maxlength="280" 
+					title="Please enter some thing to create new tweet" required></textarea>
+                </td>
+			</tr>
+			<tr>
+				<td>
+				Tags
+				</td>
+                <td>
+                    <input type="text" class="text-input" name="tags" placeholder="Add tags here for your tweet" 
+					title="Add some tags for your tweet" required/>
+                </td>
+			</tr>
+			<tr>
+				<td>
+				Add Image to your tweet
+				</td>
+                <td>
+                    <input type="file" class="text-input" name="file" accept="image/png, image/jpeg"/>
+                </td>
+			</tr>
+            
+			<tr>
+                <td class="button_row">
+                    <input type="submit" class="button" name="button" value="Add">
+                </td>
+            </tr>
+        </form>
+    </table>
+    
+</div>
+</body>
+
+</html>
